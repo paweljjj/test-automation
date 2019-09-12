@@ -18,6 +18,7 @@
         <java.version>11</java.version>
         <cucumber.version>4.7.2</cucumber.version>
         <selenium.version>3.141.59</selenium.version>
+        <apache-commons.version>3.9</apache-commons.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,11 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons.version}</version>
         </dependency>
     </dependencies>
 
