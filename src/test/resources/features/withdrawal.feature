@@ -1,17 +1,15 @@
 Feature: Withdrawal tests
 
-  @ignore
   Scenario: Withdrawal should not be possible if we do not have sufficient founds
     Given I make 200 PLN deposit
     When I want to withdraw 500 PLN
-    Then Error Not enough founds should occur
+    Then Error insufficient founds should occur
     And I have 200 PLN on my Account
 
-  @ignore
   Scenario Outline: Withdrawal should be possible if we have sufficient founds
     Given I make 200 PLN deposit
     When I want to withdraw <withdrawal> PLN
-    Then I successfully withdraw <withdrawal> PLN
+    Then Error insufficient founds did not occur
     And I have <remainingMoney> PLN on my Account
 
     Examples:

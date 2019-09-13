@@ -13,27 +13,29 @@ public class WithdrawalSteps {
 
     @Given("I make {int} PLN deposit")
     public void makeDeposit(int amount) {
-//        withdrawalService.makeDeposit();
+        withdrawalService.createAccount();
+        withdrawalService.makeDeposit(amount);
     }
 
     @When("I want to withdraw {int} PLN")
     public void makeWithdraw(int amount) {
-//        withdrawalService.makeWithdraw(amount);
+        withdrawalService.makeWithdraw(amount);
     }
 
-    @Then("Error Not enough founds should occur")
+    @Then("Error insufficient founds should occur")
     public void assertErrorNotEnoughFounds() {
-//        withdrawalService.assertErrorNotEnoughFounds();
+        withdrawalService.assertInsufficientFundsException();
     }
 
     @Then("I have {int} PLN on my Account")
     public void assertAvailableFounds(int amount) {
-//        withdrawalService.assertAvailableFounds(amount);
+        withdrawalService.checkAccount();
+        withdrawalService.assertAvailableFounds(amount);
     }
 
-    @Then("I successfully withdraw {int} PLN")
-    public void assertWithdrawalAmount(int amount) {
-//        withdrawalService.assertWithdrawalAmount(amount);
+    @Then("Error insufficient founds did not occur")
+    public void assertWithdrawalAmount() {
+        withdrawalService.assertNoErrors();
     }
 
 }
