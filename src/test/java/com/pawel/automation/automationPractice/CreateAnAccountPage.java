@@ -67,7 +67,7 @@ public class CreateAnAccountPage {
     }
 
     public void createAnAccountPageIsOpened() {
-        webDriverWait.until(ExpectedConditions.urlToBe(CREATE_AN_ACCOUNT_URL));
+//        webDriverWait.until(ExpectedConditions.urlToBe(CREATE_AN_ACCOUNT_URL));
         Assert.assertEquals(CREATE_AN_ACCOUNT_URL, webDriver.getCurrentUrl());
         log.info("Page with url: {} has been opened", CREATE_AN_ACCOUNT_URL);
     }
