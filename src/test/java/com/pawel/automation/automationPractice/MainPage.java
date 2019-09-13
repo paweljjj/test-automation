@@ -1,4 +1,4 @@
-package com.pawel.automation.automationPractice.pageObjects;
+package com.pawel.automation.automationPractice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +18,18 @@ public class MainPage {
     @FindBy(className = "login")
     private WebElement signIn;
 
+    @FindBy(xpath = "//*[contains(@href,'http://automationpractice.com/index.php?controller=order')]")
+    private WebElement cart;
+
     @Autowired
     public MainPage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
+    }
+
+    public void clearBrowserCookies() {
+        log.info("Clearing browser cookies");
+        webDriver.manage().deleteAllCookies();
     }
 
     public void openApplicationPracticePage() {
@@ -31,6 +39,10 @@ public class MainPage {
 
     public void clickSignInButton() {
         signIn.click();
+    }
+
+    public void clickCard() {
+        cart.click();
     }
 
 }

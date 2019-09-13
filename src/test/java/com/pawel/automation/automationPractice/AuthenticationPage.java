@@ -1,4 +1,4 @@
-package com.pawel.automation.automationPractice.pageObjects;
+package com.pawel.automation.automationPractice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -23,6 +23,15 @@ public class AuthenticationPage {
     @FindBy(id = "SubmitCreate")
     private WebElement createAnAccount;
 
+    @FindBy(id = "email")
+    private WebElement emailExisting;
+
+    @FindBy(id = "passwd")
+    private WebElement passwordExisting;
+
+    @FindBy(id = "SubmitLogin")
+    private WebElement signIn;
+
     @Autowired
     public AuthenticationPage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
@@ -35,11 +44,25 @@ public class AuthenticationPage {
     }
 
     public void enterRandomEmailCreateAccount() {
-        emailCreate.sendKeys(RandomStringUtils.randomAlphabetic(10) + "@domain.com");
+        String randomGeneratedEmail = RandomStringUtils.randomAlphabetic(10) + "@domain.com";
+        log.info("Random generated email: {}", randomGeneratedEmail);
+        emailCreate.sendKeys(randomGeneratedEmail);
     }
 
     public void clickCreateAnAccount() {
         createAnAccount.click();
+    }
+
+    public void enterEmailExistingAccount(String input) {
+        emailExisting.sendKeys(input);
+    }
+
+    public void enterPasswordExistingAccount(String input) {
+        passwordExisting.sendKeys(input);
+    }
+
+    public void clickSignIn() {
+        signIn.click();
     }
 
 }

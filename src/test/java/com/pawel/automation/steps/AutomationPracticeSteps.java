@@ -1,41 +1,42 @@
 package com.pawel.automation.steps;
 
-import com.pawel.automation.ContextLoader;
-import com.pawel.automation.automationPractice.pageObjects.AuthenticationPage;
-import com.pawel.automation.automationPractice.pageObjects.CreateAnAccountPage;
-import com.pawel.automation.automationPractice.pageObjects.MainPage;
-import com.pawel.automation.automationPractice.pageObjects.MyAccountPage;
+import com.pawel.automation.automationPractice.*;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.RequiredArgsConstructor;
-import org.springframework.test.context.ContextConfiguration;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
-@ContextConfiguration(classes = {ContextLoader.class})
+@AllArgsConstructor
 public class AutomationPracticeSteps {
 
     private final MainPage mainPage;
     private final AuthenticationPage authenticationPage;
     private final CreateAnAccountPage createAnAccountPage;
     private final MyAccountPage myAccountPage;
+    private final OrderPage orderPage;
+
+    @Before
+    public void clearCookies() {
+        mainPage.clearBrowserCookies();
+    }
 
     @Given("Automation Practice page is opened")
-    public void openBrowser() {
+    public void openApplicationPracticePage() {
         mainPage.openApplicationPracticePage();
     }
 
-    @When("I click Sign in button")
+    @When("I click Sign in button on the Main Page")
     public void clickSignIn() {
         mainPage.clickSignInButton();
     }
 
     @Then("I can see Authentication Page")
-    public void AuthenticationPageIsOpened() {
+    public void authenticationPageIsOpened() {
         authenticationPage.myAccountPageIsOpened();
     }
 
-    @When("I enter random email adress")
+    @When("I enter random email address in Create an account panel")
     public void enterEmailAdress() {
         authenticationPage.enterRandomEmailCreateAccount();
     }
@@ -75,7 +76,7 @@ public class AutomationPracticeSteps {
         createAnAccountPage.enterLastNameAdress(input);
     }
 
-    @When("I enter adressLine1: {string}")
+    @When("I enter addressLine1: {string}")
     public void enterAdressLine1(String input) {
         createAnAccountPage.enterAdressLine1(input);
     }
@@ -105,7 +106,7 @@ public class AutomationPracticeSteps {
         createAnAccountPage.enterMobilePhone(input);
     }
 
-    @When("I enter adressAlias: {string}")
+    @When("I enter addressAlias: {string}")
     public void enterAdressAlias(String input) {
         createAnAccountPage.enterAdressAlias(input);
     }
@@ -118,6 +119,36 @@ public class AutomationPracticeSteps {
     @Then("I can see My Account page")
     public void myAccountPageIsOpened() {
         myAccountPage.myAccountPageIsOpened();
+    }
+
+    @When("I enter email: {string} for an existing account")
+    public void enterEmailExistingAccount(String input) {
+        authenticationPage.enterEmailExistingAccount(input);
+    }
+
+    @When("I enter password: {string} for an existing account")
+    public void enterPasswordExistingAccount(String input) {
+        authenticationPage.enterPasswordExistingAccount(input);
+    }
+
+    @When("I click Sign in button on the Authentication Page")
+    public void authenticationClickSignIn() {
+        authenticationPage.clickSignIn();
+    }
+
+    @When("I click Cart on the Main Page")
+    public void clickCard() {
+        mainPage.clickCard();
+    }
+
+    @Then("I can see Order Page")
+    public void orderPageIsOpened() {
+        orderPage.orderPageIsOpened();
+    }
+
+    @Then("I can see error message Your shopping cart is empty")
+    public void errorMessageOrderEmptyIsVisible() {
+        orderPage.errorMessageOrderEmptyIsVisible();
     }
 
 }
