@@ -24,6 +24,7 @@ public class AutomationPracticeSteps {
     @Given("Automation Practice page is opened")
     public void openApplicationPracticePage() {
         mainPage.openApplicationPracticePage();
+        mainPage.applicationPageIsOpened();
     }
 
     @When("I click Sign in button on the Main Page")
@@ -33,7 +34,7 @@ public class AutomationPracticeSteps {
 
     @Then("I can see Authentication Page")
     public void authenticationPageIsOpened() {
-        authenticationPage.myAccountPageIsOpened();
+        authenticationPage.authenticationPageIsOpened();
     }
 
     @When("I enter random email address in Create an account panel")

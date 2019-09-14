@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -59,15 +58,15 @@ public class CreateAnAccountPage {
     @FindBy(id = "submitAccount")
     private WebElement register;
 
-    @Autowired
     public CreateAnAccountPage(WebDriver webDriver, WebDriverWait webDriverWait) {
-        PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
         this.webDriverWait = webDriverWait;
+        PageFactory.initElements(webDriver, this);
     }
 
     public void createAnAccountPageIsOpened() {
         webDriverWait.until(ExpectedConditions.urlToBe(CREATE_AN_ACCOUNT_URL));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(register));
         Assert.assertEquals(CREATE_AN_ACCOUNT_URL, webDriver.getCurrentUrl());
         log.info("Page with url: {} has been opened", CREATE_AN_ACCOUNT_URL);
     }

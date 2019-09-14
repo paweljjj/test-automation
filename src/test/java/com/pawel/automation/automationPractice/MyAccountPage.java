@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -17,11 +16,10 @@ public class MyAccountPage {
     private WebDriver webDriver;
     private WebDriverWait webDriverWait;
 
-    @Autowired
     public MyAccountPage(WebDriver webDriver, WebDriverWait webDriverWait) {
-        PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
         this.webDriverWait = webDriverWait;
+        PageFactory.initElements(webDriver, this);
     }
 
     public void myAccountPageIsOpened() {
