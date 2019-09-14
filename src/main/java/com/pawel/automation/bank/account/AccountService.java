@@ -3,8 +3,6 @@ package com.pawel.automation.bank.account;
 import com.pawel.automation.bank.generator.AccountNumberGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
